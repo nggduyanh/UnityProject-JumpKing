@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7332096}
   - component: {fileID: 7332097}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel8 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 38136413}
   - component: {fileID: 38136414}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel5 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 74098304}
   - component: {fileID: 74098305}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel5 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 143047726}
   - component: {fileID: 143047727}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 158435412}
   - component: {fileID: 158435411}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BlockRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,8 +819,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 2
+  m_Material: {fileID: 6200000, guid: e22e49e7e499a1545ab42379d3246453, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -892,8 +892,8 @@ Transform:
   m_GameObject: {fileID: 200908185}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1551, y: -3.5551, z: 0}
-  m_LocalScale: {x: 0.7171574, y: 0.7171574, z: 0.7171574}
+  m_LocalPosition: {x: -3.77, y: -3.52, z: 0}
+  m_LocalScale: {x: 1, y: 1.0019953, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -912,11 +912,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 519420031}
   Player: {fileID: 200908191}
-  speedX: 5
-  speedY: 2
-  directionSpeed: 4
-  minSquatForce: 2
-  maxSquatForce: 5
+  bouncyMaterial: {fileID: 6200000, guid: 76ec1b9e83621e5489ce6edecb9aa269, type: 2}
+  normalMaterial: {fileID: 6200000, guid: e22e49e7e499a1545ab42379d3246453, type: 2}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  walkSpeed: 7
+  minJumpForce: 5
+  maxJumpForce: 15
+  increasingForceSpeed: 0.02
 --- !u!95 &200908191
 Animator:
   serializedVersion: 5
@@ -948,7 +952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 221969569}
   - component: {fileID: 221969570}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1025,7 +1029,7 @@ GameObject:
   m_Component:
   - component: {fileID: 240286751}
   - component: {fileID: 240286752}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel5 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1102,7 +1106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245851943}
   - component: {fileID: 245851944}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TreeColider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1179,7 +1183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 267976417}
   - component: {fileID: 267976418}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel5 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1256,7 +1260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 296682938}
   - component: {fileID: 296682939}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel3 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1333,7 +1337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 299993180}
   - component: {fileID: 299993181}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel4 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1487,7 +1491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 377681039}
   - component: {fileID: 377681040}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1564,7 +1568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 379696455}
   - component: {fileID: 379696454}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BlockLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1641,7 +1645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425962053}
   - component: {fileID: 425962054}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel3 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1718,7 +1722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426316418}
   - component: {fileID: 426316419}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1925,7 +1929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 530375842}
   - component: {fileID: 530375841}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2002,7 +2006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 534576878}
   - component: {fileID: 534576879}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel9 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2079,7 +2083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 549178675}
   - component: {fileID: 549178676}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel7 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2156,7 +2160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 562224848}
   - component: {fileID: 562224849}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2233,7 +2237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567919943}
   - component: {fileID: 567919944}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2310,7 +2314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 608846615}
   - component: {fileID: 608846616}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel4 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2387,7 +2391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 621894125}
   - component: {fileID: 621894126}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel3 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2464,7 +2468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 717431141}
   - component: {fileID: 717431142}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel7 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2541,7 +2545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 782265090}
   - component: {fileID: 782265091}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2618,7 +2622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 789261492}
   - component: {fileID: 789261493}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel8 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2695,7 +2699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 817554491}
   - component: {fileID: 817554492}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel6 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2772,7 +2776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 827465573}
   - component: {fileID: 827465574}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel6 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2849,7 +2853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 871467557}
   - component: {fileID: 871467558}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TreeColider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2926,7 +2930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 872138564}
   - component: {fileID: 872138565}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel6 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3003,7 +3007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 884775631}
   - component: {fileID: 884775632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3080,7 +3084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 915561284}
   - component: {fileID: 915561285}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel3 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3241,7 +3245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 982883805}
   - component: {fileID: 982883806}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel9 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3318,7 +3322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994553308}
   - component: {fileID: 994553309}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel5 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3626,7 +3630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1044614712}
   - component: {fileID: 1044614713}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TreeColider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3879,7 +3883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1087889545}
   - component: {fileID: 1087889546}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4051,7 +4055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1111894006}
   - component: {fileID: 1111894007}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel9 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4241,11 +4245,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 519420031}
   Player: {fileID: 0}
-  speedX: 8
-  speedY: 0
-  directionSpeed: 0
-  minSquatForce: 0
-  maxSquatForce: 0
+  bouncyMaterial: {fileID: 0}
+  normalMaterial: {fileID: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  walkSpeed: 0
+  minJumpForce: 0
+  maxJumpForce: 0
+  increasingForceSpeed: 0
 --- !u!61 &1118246712
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4328,7 +4336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158478295}
   - component: {fileID: 1158478296}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel6 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4447,7 +4455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1202502149}
   - component: {fileID: 1202502150}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel9 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4524,7 +4532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278037733}
   - component: {fileID: 1278037734}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel5 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4685,7 +4693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1287257245}
   - component: {fileID: 1287257246}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4879,7 +4887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1344034392}
   - component: {fileID: 1344034393}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel8 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4956,7 +4964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1359116887}
   - component: {fileID: 1359116888}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel5 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5033,7 +5041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1363365847}
   - component: {fileID: 1363365848}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel7 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5110,7 +5118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371270763}
   - component: {fileID: 1371270764}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel8 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5187,7 +5195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1398222619}
   - component: {fileID: 1398222620}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel5 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5264,7 +5272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1526158470}
   - component: {fileID: 1526158471}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel7 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5341,7 +5349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1549061198}
   - component: {fileID: 1549061199}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel7 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5418,7 +5426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1570176178}
   - component: {fileID: 1570176179}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel6 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5495,7 +5503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1571916231}
   - component: {fileID: 1571916232}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel9 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5572,7 +5580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1601769433}
   - component: {fileID: 1601769434}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel3 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5733,7 +5741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1615305811}
   - component: {fileID: 1615305812}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel7 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5810,7 +5818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651666813}
   - component: {fileID: 1651666814}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel7 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5887,7 +5895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1674051769}
   - component: {fileID: 1674051770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TreeColider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5964,7 +5972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1708284103}
   - component: {fileID: 1708284104}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6118,7 +6126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1736596842}
   - component: {fileID: 1736596843}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TreeColider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6287,7 +6295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1759522563}
   - component: {fileID: 1759522564}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6364,7 +6372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1788384393}
   - component: {fileID: 1788384394}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TreeColider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6441,7 +6449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1824183810}
   - component: {fileID: 1824183811}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel7 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6610,7 +6618,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1862103636}
   - component: {fileID: 1862103637}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel9 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6764,7 +6772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1885487870}
   - component: {fileID: 1885487871}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6841,7 +6849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1895120068}
   - component: {fileID: 1895120069}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassLevel2 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7002,7 +7010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1944393353}
   - component: {fileID: 1944393354}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel8 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7079,7 +7087,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1954623117}
   - component: {fileID: 1954623118}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel8 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7233,7 +7241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1998179495}
   - component: {fileID: 1998179496}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel7 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7310,7 +7318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2029580765}
   - component: {fileID: 2029580766}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TreeColider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7424,7 +7432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2082369881}
   - component: {fileID: 2082369882}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IceLevel6 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
