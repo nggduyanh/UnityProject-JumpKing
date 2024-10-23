@@ -3361,6 +3361,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 392425010}
   playerMovement: {fileID: 200908190}
   scoreManager: {fileID: 360791047}
+  defaultMusicVolume: 1
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5294,6 +5295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumneSlider: {fileID: 907449500}
+  defaultMusicVolume: 1
 --- !u!1 &915561283
 GameObject:
   m_ObjectHideFlags: 0
