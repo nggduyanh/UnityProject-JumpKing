@@ -18,6 +18,12 @@ TagManager:
   - Map3
   - Map4
   - Map1
+  - Princess
+  - Map5
+  - Map6
+  - Map7
+  - Map8
+  - Map9
   layers:
   - Default
   - TransparentFX

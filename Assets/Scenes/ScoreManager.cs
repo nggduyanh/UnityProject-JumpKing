@@ -13,7 +13,58 @@ public class ScoreManager:MonoBehaviour
     {
         jumpCount++;
         jumpCountText.text = "Jump: "+jumpCount.ToString();
-    } 
+    }
+    public void setJumpCount(int jump)
+    {
+        this.jumpCount = jump;
+    }
+    public void setFallCount(int fall)
+    {
+        this.fallcount = fall;
+    }
+    public void setHoursCount(int hours)
+    {
+        this.hoursCount = hours;
+    }
+    public void setMinusCount(int minus)
+    {
+        this.minutesCount = minus;
+    }
+    public void setSecondCount(int second)
+    {
+        this.secondsCount = second;
+    }
+   
+    public int getJumpCount()
+    {
+        return jumpCount;
+    }
+    public int getFallCount()
+    {
+        return fallcount;
+    }
+    public int getHoursCount()
+    {
+        return hoursCount;
+    }
+    public int getMinusCount()
+    {
+        return minutesCount;
+    }
+    public int getSecondCount()
+    {
+        return secondsCount;
+    }
+
+    public void ResetTime()
+    {
+        timeCount = 0;
+        secondsCount = 0;
+        minutesCount = 0;
+        hoursCount = 0;
+        timeCountText.text = "00:00:00";
+    }
+    
     public void OnFall()
     {
         fallcount++;
