@@ -84,7 +84,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 Vector3 newCameraPosition = level.transform.position;
                 MainCamera.transform.position = newCameraPosition + new Vector3(0, 0, -20);
-            }
+                
+        }
     }
     private void OnDrawGizmosSelected() 
     {
