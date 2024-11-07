@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
+        Application.targetFrameRate = 60;
         rb =GetComponent<Rigidbody2D>();
         Player = GetComponent<Animator>();
         audioSource=GetComponent<AudioSource>();
@@ -86,13 +86,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmosSelected() 
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(0.75f, 0.3f) );
+        Gizmos.DrawCube(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(0.7f, 0.3f) );
     }
     private void PlaySound(int clipNumber)
     {
         audioSource.clip = audioClips[clipNumber];
         audioSource.Play();
-    }
+    }   
     private void PlayerTime()
     {
         scoreManager.PlayerTime();
@@ -102,7 +102,8 @@ public class PlayerMovement : MonoBehaviour
         //if(rb.velocity.x!=0)    Debug.Log("velocity x:" + rb.velocity.x);
         //if (rb.velocity.y != 0) Debug.Log("velocity y:" + rb.velocity.y);
         moveInput = Input.GetAxisRaw("Horizontal");
-        isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y-0.5f), new Vector2(0.75f, 0.3f), 0f, groundMask);
+        //isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(1.5f, 0.3f), 0f, groundMask);
+        isGrounded = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.3f), 0, -transform.up, 0.5f, groundMask);
         //if(isGrounded) Debug.Log("isGrounded")
         if (isGrounded) 
         {
@@ -129,21 +130,24 @@ public class PlayerMovement : MonoBehaviour
 
         }
         //Player walk
-        if (moveInput!=0 && isGrounded && !isSquatting)
+        if (isGrounded && !isSquatting)
         {
-            transform.localScale = new Vector2(moveInput, transform.localScale.y);
             //gameObject.transform.Translate(Vector2.left * speedX * Time.deltaTime);
             rb.velocity = new Vector2(walkSpeed * moveInput, rb.velocity.y);
-
-            Player.SetBool("isRunning", true);
-            Player.SetBool("isIdle", false);
-            Player.SetBool("isProned", false);
-            isSquatting = false;
+            if (moveInput != 0)
+            {
+                transform.localScale = new Vector2(moveInput, transform.localScale.y);
+                Player.SetBool("isRunning", true);
+                Player.SetBool("isIdle", false);
+                Player.SetBool("isProned", false);
+                isSquatting = false;
+            }
         }
         //Player squat
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
             jumpForce += increasingForceSpeed;
+            rb.velocity = new Vector2(0, rb.velocity.y);
             //Debug.Log("isSquatting");
             Debug.Log("jumpForce" + jumpForce);
 
