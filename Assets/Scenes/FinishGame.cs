@@ -8,10 +8,12 @@ public class FinishGame : MonoBehaviour
     public PlayerMovement playerMovement;
     public ScoreManager scoreManager;
     public static bool isNewGame;
+    private Vector3 startingPlayerPosition;
     // Start is called before the first frame update
     void Start()
     {
         finishGame.SetActive(false);
+        startingPlayerPosition = playerMovement.transform.position;
         isNewGame = false;
     }
 
@@ -22,8 +24,8 @@ public class FinishGame : MonoBehaviour
     }
     public void NewGame()
     {
-        playerMovement.transform.position = new Vector3(-3.31f, -5.05f, 0f);
-        Camera.main.transform.position = new Vector3(-0.02877408f, -1.722597f, -20f);
+        playerMovement.transform.position = new Vector3(0.32f, -6.870397f, 0);
+        Camera.main.transform.position = new Vector3(0.06122589f, -3.282597f, -20f);
         Time.timeScale = 1f;
         scoreManager.setJumpCount(0);
         scoreManager.setFallCount(-1);

@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-
+    
     private Rigidbody2D rb;
     private ScoreManager scoreManager;
     private AudioSource audioSource;
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
    
     void Start()
     {
-
+        Application.targetFrameRate = 60;
         rb =GetComponent<Rigidbody2D>();
         Player = GetComponent<Animator>();
         audioSource=GetComponent<AudioSource>();
@@ -110,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!PauseMenu.isPause)
         {
-            Debug.Log("Can move");
             //if(rb.velocity.x!=0)    Debug.Log("velocity x:" + rb.velocity.x);
             //if (rb.velocity.y != 0) Debug.Log("velocity y:" + rb.velocity.y);
             moveInput = Input.GetAxisRaw("Horizontal");

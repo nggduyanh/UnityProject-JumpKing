@@ -62,14 +62,16 @@ public class PauseMenu : MonoBehaviour
     
     public void NewGame()
     {
-        playerMovement.transform.position = new Vector3(-3.31f, -5.05f, 0f);
-        Camera.main.transform.position = new Vector3(-0.02877408f, -1.722597f, -20f);
+        playerMovement.transform.position = new Vector3(0.32f, -6.870397f, 0);
+        Camera.main.transform.position = new Vector3(0.06122589f, -3.282597f, -20f);
         scoreManager.setJumpCount(0);
         scoreManager.setFallCount(0);
         scoreManager.setHoursCount(0);
         scoreManager.setMinusCount(0);
         scoreManager.setSecondCount(0);
-       
+        pauseMenu.SetActive(false);
+        isPause = false;
+        Time.timeScale = 1f;
         scoreManager.jumpCountText.text = "Jump: " + scoreManager.getJumpCount().ToString();
         scoreManager.fallCountText.text = "Fall: " + scoreManager.getFallCount().ToString();
         scoreManager.ResetTime();
@@ -89,10 +91,11 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetInt("Minus", scoreManager.getMinusCount());
         PlayerPrefs.SetInt("Second", scoreManager.getSecondCount());
 
-        
+        PlayerPrefs.SetInt("HasSavedGame", 1);
+
         PlayerPrefs.Save();
-        
 
-
+        SceneManager.LoadScene("MenuScene");
+        Debug.Log("Player position" + playerPosition);
     }
 }
