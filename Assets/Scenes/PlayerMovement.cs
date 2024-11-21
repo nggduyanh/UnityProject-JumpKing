@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpForce, moveInput;
     private int currentLevel;
     public float walkSpeed, minJumpForce, maxJumpForce, increasingForceSpeed;
-   
+
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     //Luong
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        for(int i = 1; i < 10; i++)
+        for(int i = 1; i < 24; i++)
         {
             string levelTag = "Level" + i;
             if (collision.tag == levelTag)
@@ -72,8 +72,8 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Sound0");
         }
     }
-    
-   
+
+
     private void moveCameraToLevel(string levelTag)
     {
             string levelString = levelTag;
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmosSelected() 
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(0.75f, 0.3f) );
+        Gizmos.DrawCube(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(0.75f, 0.3f));
     }
     private void PlaySound(int clipNumber)
     {
