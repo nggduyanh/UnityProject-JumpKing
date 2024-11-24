@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-
+    
     private Rigidbody2D rb;
     private ScoreManager scoreManager;
     private AudioSource audioSource;
@@ -43,9 +43,11 @@ public class PlayerMovement : MonoBehaviour
         isProned = false;
         isFalling = false;
     }
+    
+    //Luong
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        for(int i = 1; i < 10; i++)
+        for(int i = 1; i < 24; i++)
         {
             string levelTag = "Level" + i;
             if (collision.tag == levelTag)
@@ -71,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     private void moveCameraToLevel(string levelTag)
     {
             string levelString = levelTag;
@@ -81,25 +84,34 @@ public class PlayerMovement : MonoBehaviour
             {
                 Vector3 newCameraPosition = level.transform.position;
                 MainCamera.transform.position = newCameraPosition + new Vector3(0, 0, -20);
-            }
+                
+        }
     }
     private void OnDrawGizmosSelected() 
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(0.7f, 0.3f) );
+        Gizmos.DrawCube(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(0.7f, 0.3f));
     }
     private void PlaySound(int clipNumber)
     {
-        audioSource.clip = audioClips[clipNumber];
-        audioSource.Play();
-    }   
+            audioSource.clip = audioClips[clipNumber];
+            audioSource.Play();
+    }
+
     private void PlayerTime()
     {
         scoreManager.PlayerTime();
     }
+
+    public bool getIsGround()
+    {
+        return isGrounded;
+    }
     void Update()
     {
-        //if(rb.velocity.x!=0)    Debug.Log("velocity x:" + rb.velocity.x);
+        if (!PauseMenu.isPause)
+        {
+            //if(rb.velocity.x!=0)    Debug.Log("velocity x:" + rb.velocity.x);
         //if (rb.velocity.y != 0) Debug.Log("velocity y:" + rb.velocity.y);
         moveInput = Input.GetAxisRaw("Horizontal");
         //isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(1.5f, 0.3f), 0f, groundMask);
@@ -191,6 +203,7 @@ public class PlayerMovement : MonoBehaviour
             Player.SetBool("isJumping", false);
             isFalling = true;   
             //Debug.Log("isFalling");
+        }
         }
     }
 }
