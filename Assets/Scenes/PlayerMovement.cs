@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip[] audioClips;
     public LayerMask groundMask;
 
-    private bool isSquatting, isGrounded,isProned,isFalling;   
+    private bool isSquatting, isGrounded,isProned,isFalling,isFlying;   
     private float jumpForce, moveInput;
     private int currentLevel;
     public float walkSpeed, minJumpForce, maxJumpForce, increasingForceSpeed;
@@ -39,9 +39,11 @@ public class PlayerMovement : MonoBehaviour
         Player.SetBool("isJumping", false);
         Player.SetBool("isFalling", false);
         Player.SetBool("isProned", false);
+        Player.SetBool("isFlying", false);
         isSquatting = false;
         isProned = false;
         isFalling = false;
+        isFlying = false;
     }
     
     //Luong
@@ -64,12 +66,22 @@ public class PlayerMovement : MonoBehaviour
             }   
         }   
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!isGrounded)
+        if (!isGrounded)
         {
             PlaySound(0);
             //Debug.Log("Sound0");
+        }
+        if(collision.collider.tag == "FlyingBuff")
+        {
+            isFlying = true;
+            rb.sharedMaterial = normalMaterial;
+            Player.SetBool("isFlying", true);
+            Invoke("StopFlying", 5);
+            //Destroy(collision.gameObject);
+            Debug.Log("im flying");
         }
     }
 
@@ -107,103 +119,120 @@ public class PlayerMovement : MonoBehaviour
     {
         return isGrounded;
     }
+    private void StopFlying()
+    {
+        isFlying = false;
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        Player.SetBool("isFlying", false);
+    }
     void Update()
     {
         if (!PauseMenu.isPause)
         {
-            //if(rb.velocity.x!=0)    Debug.Log("velocity x:" + rb.velocity.x);
-        //if (rb.velocity.y != 0) Debug.Log("velocity y:" + rb.velocity.y);
-        moveInput = Input.GetAxisRaw("Horizontal");
-        //isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(1.5f, 0.3f), 0f, groundMask);
-        isGrounded = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.3f), 0, -transform.up, 0.5f, groundMask);
-        //if(isGrounded) Debug.Log("isGrounded")
-        if (isGrounded) 
-        {
-            rb.sharedMaterial = normalMaterial;
-            //Debug.Log("normal");  
-            if (rb.velocity.x == 0)
+            if(isFlying)
             {
-                if (isProned)
-                {
-                    Debug.Log("isProned");
-                    Player.SetBool("isProned", true);
-                    isProned = false;
-                }
-                else if (isFalling)
-                {
-                    //Debug.Log("falled");
-                    PlaySound(3);
-                }
-                Player.SetBool("isIdle", true);
-                Player.SetBool("isFalling", false);
-                Player.SetBool("isRunning", false);
-                isFalling = false;
+                rb.velocity = new Vector2(rb.velocity.x, 3);
             }
-
-        }
-        //Player walk
-        if (isGrounded && !isSquatting)
-        {
-            //gameObject.transform.Translate(Vector2.left * speedX * Time.deltaTime);
-            rb.velocity = new Vector2(walkSpeed * moveInput, rb.velocity.y);
-            if (moveInput != 0)
+            //if(rb.velocity.x!=0)    Debug.Log("velocity x:" + rb.velocity.x);
+            //if (rb.velocity.y != 0) Debug.Log("velocity y:" + rb.velocity.y);
+            moveInput = Input.GetAxisRaw("Horizontal");
+            //isGrounded = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.5f), new Vector2(1.5f, 0.3f), 0f, groundMask);
+            isGrounded = Physics2D.BoxCast(transform.position, new Vector2(0.7f, 0.3f), 0, -transform.up, 0.5f, groundMask);
+            //if(isGrounded) Debug.Log("isGrounded")
+            if (isGrounded) 
             {
-                transform.localScale = new Vector2(moveInput, transform.localScale.y);
-                Player.SetBool("isRunning", true);
+                rb.sharedMaterial = normalMaterial;
+                //Debug.Log("normal");  
+                if (rb.velocity.x == 0)
+                {
+                    if (isProned)
+                    {
+                        Debug.Log("isProned");
+                        Player.SetBool("isProned", true);
+                        isProned = false;
+                    }
+                    else if (isFalling)
+                    {
+                        //Debug.Log("falled");
+                        PlaySound(3);
+                    }
+                    Player.SetBool("isIdle", true);
+                    Player.SetBool("isFalling", false);
+                    Player.SetBool("isRunning", false);
+                    isFalling = false;
+                }
+
+            }
+            //Player walk
+            if ((isGrounded && !isSquatting)|| isFlying)
+            {
+                //gameObject.transform.Translate(Vector2.left * speedX * Time.deltaTime);
+                rb.velocity = new Vector2(walkSpeed * moveInput, rb.velocity.y);
+                if (moveInput != 0)
+                {
+                    transform.localScale = new Vector2(moveInput, transform.localScale.y);
+                    Player.SetBool("isRunning", true);
+                    Player.SetBool("isIdle", false);
+                    Player.SetBool("isProned", false);
+                    isSquatting = false;
+                }
+            }
+            //Player squat
+            if (Input.GetKey(KeyCode.Space) && isGrounded)
+            {
+                jumpForce += increasingForceSpeed;
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                //Debug.Log("isSquatting");
+                Debug.Log("jumpForce" + jumpForce);
+
+                Player.SetBool("isSquatting", true);
+                Player.SetBool("isRunning", false);
+                Player.SetBool("isFalling", false); 
                 Player.SetBool("isIdle", false);
                 Player.SetBool("isProned", false);
-                isSquatting = false;
+                isSquatting = true;
             }
-        }
-        //Player squat
-        if (Input.GetKey(KeyCode.Space) && isGrounded)
-        {
-            jumpForce += increasingForceSpeed;
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            //Debug.Log("isSquatting");
-            Debug.Log("jumpForce" + jumpForce);
+            //Player Jump
+            if (Input.GetKeyUp(KeyCode.Space) && isSquatting)
+            {
+                if (jumpForce < minJumpForce) jumpForce = minJumpForce;
+                if (jumpForce > maxJumpForce) jumpForce = maxJumpForce;
+                rb.velocity = new Vector2(moveInput * walkSpeed, jumpForce);
+                jumpForce = 0;
+                //Debug.Log("Bouncyyy");
 
-            Player.SetBool("isSquatting", true);
-            Player.SetBool("isRunning", false);
-            Player.SetBool("isFalling", false); 
-            Player.SetBool("isIdle", false);
-            Player.SetBool("isProned", false);
-            isSquatting = true;
-        }
-        //Player Jump
-        if (Input.GetKeyUp(KeyCode.Space) && isSquatting)
-        {
-            if (jumpForce < minJumpForce) jumpForce = minJumpForce;
-            if (jumpForce > maxJumpForce) jumpForce = maxJumpForce;
-            rb.velocity = new Vector2(moveInput * walkSpeed, jumpForce);
-            jumpForce = 0;
-            //Debug.Log("Bouncyyy");
+                Player.SetBool("isRunning", false);
+                Player.SetBool("isSquatting", false);
+                isSquatting = false;
+                scoreManager.OnJump();
+            }
+            //Player jumping
+            if (rb.velocity.y > 0 && !isGrounded)
+            {
+                if (!isFlying)
+                {
+                    rb.sharedMaterial = bouncyMaterial;
+                    //Debug.Log("isJumping");
 
-            Player.SetBool("isRunning", false);
-            Player.SetBool("isSquatting", false);
-            isSquatting = false;
-            scoreManager.OnJump();
-        }
-        //Player jumping
-        if (rb.velocity.y > 0 && !isGrounded)
-        {
-            rb.sharedMaterial = bouncyMaterial;
-            //Debug.Log("isJumping");
-
-            Player.SetBool("isJumping", true);
-            Player.SetBool("isIdle", false);
-            Player.SetBool("isRunning", false);
-        }
-        //Player falling
-        if (rb.velocity.y < 0 && !isGrounded)
-        {
-            Player.SetBool("isFalling", true);
-            Player.SetBool("isIdle", false);
-            Player.SetBool("isRunning", false);
-            Player.SetBool("isJumping", false);
-            isFalling = true;   
-            //Debug.Log("isFalling");
-        }
+                    Player.SetBool("isJumping", true);
+                    Player.SetBool("isIdle", false);
+                    Player.SetBool("isRunning", false);
+                }
+                else 
+                {
+                    Player.SetBool("isFlying", true);
+                }
+            }
+            //Player falling
+            if (rb.velocity.y < 0 && !isGrounded)
+            {
+                Player.SetBool("isFalling", true);
+                Player.SetBool("isIdle", false);
+                Player.SetBool("isRunning", false);
+                Player.SetBool("isJumping", false);
+                isFalling = true;   
+                //Debug.Log("isFalling");
+            }
         }
     }
 }
