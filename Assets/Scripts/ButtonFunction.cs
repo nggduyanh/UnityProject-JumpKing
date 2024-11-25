@@ -20,16 +20,16 @@ public class ButtonFunction : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void NewGame()
     {
         Time.timeScale = 1f;
         PlayerPrefs.DeleteKey("HasSavedGame");
         SceneManager.LoadScene("SampleScene");
+    }
+    public void Continue()
+    {
+        SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1f;
     }
     public void Quit()
     {

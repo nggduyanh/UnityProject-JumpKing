@@ -22,17 +22,9 @@ public class ScoreManager:MonoBehaviour
     {
         this.fallcount = fall;
     }
-    public void setHoursCount(int hours)
+    public void setTimeCount(int seconds)
     {
-        this.hoursCount = hours;
-    }
-    public void setMinusCount(int minus)
-    {
-        this.minutesCount = minus;
-    }
-    public void setSecondCount(int second)
-    {
-        this.secondsCount = second;
+        this.timeCount = seconds;
     }
    
     public int getJumpCount()
@@ -43,17 +35,9 @@ public class ScoreManager:MonoBehaviour
     {
         return fallcount;
     }
-    public int getHoursCount()
+    public int getTimeCount()
     {
-        return hoursCount;
-    }
-    public int getMinusCount()
-    {
-        return minutesCount;
-    }
-    public int getSecondCount()
-    {
-        return secondsCount;
+        return timeCount;
     }
 
     public void ResetTime()
@@ -84,5 +68,10 @@ public class ScoreManager:MonoBehaviour
         else hoursText = hoursCount.ToString();
         timeCountText.text = hoursText + ":" + minutesText + ":" + secondsText;
     }
+    public void ReDrawText()
+    {
+        jumpCountText.text = "Jump: " + jumpCount.ToString();
+        fallCountText.text = "Fall: " + fallcount.ToString();
+    }    
 }
     

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinishGame : MonoBehaviour
 {
@@ -19,19 +21,21 @@ public class FinishGame : MonoBehaviour
 
     public void QuitGame()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
         Debug.Log("Game quitted");
     }
     public void NewGame()
     {
-        playerMovement.transform.position = new Vector3(0.32f, -6.870397f, 0);
-        Camera.main.transform.position = new Vector3(0.06122589f, -3.282597f, -20f);
+        playerMovement.transform.position = new Vector3(-4.176444f, -63.44709f, 0);
+        //Camera.main.transform.position = new Vector3(0.06122589f, -3.282597f, -20f);
         Time.timeScale = 1f;
         scoreManager.setJumpCount(0);
         scoreManager.setFallCount(-1);
-        scoreManager.setHoursCount(0);
-        scoreManager.setMinusCount(0);
-        scoreManager.setSecondCount(0);
+        scoreManager.setTimeCount(0);
         scoreManager.jumpCountText.text = "Jump: " + scoreManager.getJumpCount().ToString();
         scoreManager.fallCountText.text = "Fall: " + scoreManager.getFallCount().ToString();
         scoreManager.ResetTime();

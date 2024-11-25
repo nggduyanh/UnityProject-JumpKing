@@ -25,27 +25,104 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
+        Debug.Log("hello");
         rb =GetComponent<Rigidbody2D>();
         Player = GetComponent<Animator>();
         audioSource=GetComponent<AudioSource>();
         scoreManager= GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        if (PlayerPrefs.GetInt("HasSavedGame") == 1)
+        {
+            transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerPosX"), PlayerPrefs.GetFloat("PlayerPosY"), PlayerPrefs.GetFloat("PlayerPosX"));
+            scoreManager.setFallCount(PlayerPrefs.GetInt("FallScore"));
+            scoreManager.setJumpCount(PlayerPrefs.GetInt("JumpScore"));
+            scoreManager.setTimeCount(PlayerPrefs.GetInt("Time"));
+
+            //Player.SetBool("isIdle", PlayerPrefs.GetInt("isIdleAnim") ==1 ? true:false);
+            //Player.SetBool("isRunning", PlayerPrefs.GetInt("isRunningAnim") == 1 ? true : false);
+            //Player.SetBool("isSquatting", PlayerPrefs.GetInt("isSquattingAnim") == 1 ? true : false);
+            //Player.SetBool("isJumping", PlayerPrefs.GetInt("isJumpingAnim") == 1 ? true : false);
+            //Player.SetBool("isFalling", PlayerPrefs.GetInt("isFallingAnim") == 1 ? true : false);
+            //Player.SetBool("isProned", PlayerPrefs.GetInt("isPronedAnim") == 1 ? true : false);
+            //Player.SetBool("isFlying", PlayerPrefs.GetInt("isFlyingAnim") == 1 ? true : false);
+
+            //isSquatting = PlayerPrefs.GetInt("isSquatting") == 1 ? true : false;
+            //isGrounded = PlayerPrefs.GetInt("isGrounded") == 1 ? true : false;
+            //isProned = PlayerPrefs.GetInt("isProned") == 1 ? true : false;
+            //isFalling = PlayerPrefs.GetInt("isFalling") == 1 ? true : false;
+            //isFlying = PlayerPrefs.GetInt("isFlying") == 1 ? true : false;
+            //rb.velocity =new Vector2 (PlayerPrefs.GetFloat("velocityX"), PlayerPrefs.GetFloat("velocityY"));
+            scoreManager.ReDrawText();
+        }
+        else
+        {
+            Player.SetBool("isIdle", true);
+            Player.SetBool("isRunning", false);
+            Player.SetBool("isSquatting", false);
+            Player.SetBool("isJumping", false);
+            Player.SetBool("isFalling", false);
+            Player.SetBool("isProned", false);
+            Player.SetBool("isFlying", false);
+            isSquatting = false;
+            isGrounded = false;
+            isProned = false;
+            isFalling = false;
+            isFlying = false;
+        }
         currentLevel = 1;
 
         InvokeRepeating("PlayerTime", 0, 1);
 
-        Player.SetBool("isIdle", true);
-        Player.SetBool("isRunning", false);
-        Player.SetBool("isSquatting", false);
-        Player.SetBool("isJumping", false);
-        Player.SetBool("isFalling", false);
-        Player.SetBool("isProned", false);
-        Player.SetBool("isFlying", false);
-        isSquatting = false;
-        isProned = false;
-        isFalling = false;
-        isFlying = false;
+
     }
-    
+    public void setIsSquatting(bool isSquatting)
+    {
+        this.isSquatting = isSquatting;
+    }
+    public void setIsGrounded(bool isGrounded)
+    {
+        this.isGrounded = isGrounded;
+    }
+    public void setIsProned(bool isProned)
+    {
+        this.isProned = isProned;
+    }
+    public void setIsFalling(bool isFalling)
+    {
+        this.isFalling = isFalling;
+    }
+    public void setIsFlying(bool isFlying)
+    {
+        this.isFlying = isFlying;
+    }
+    public void setVelocity(Vector2 velocity)
+    {
+        this.rb.velocity = velocity;
+    }
+
+    public Vector2 getVelocity()
+    {
+        return rb.velocity;
+    }
+    public bool getIsSquatting()
+    {
+        return isSquatting;
+    }
+    public bool getIsGrounded()
+    {
+        return isGrounded;
+    }
+    public bool getIsProned()
+    {
+        return isProned;
+    }
+    public bool getIsFalling()
+    {
+        return isFalling;
+    }
+    public bool getIsFlying()
+    {
+        return isFlying;
+    }
     //Luong
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -115,10 +192,6 @@ public class PlayerMovement : MonoBehaviour
         scoreManager.PlayerTime();
     }
 
-    public bool getIsGround()
-    {
-        return isGrounded;
-    }
     private void StopFlying()
     {
         isFlying = false;
@@ -129,7 +202,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!PauseMenu.isPause)
         {
-            if(isFlying)
+            if(Input.GetKey(KeyCode.F))
+            {
+                transform.position = new Vector2(-4.176444f, 166.1912f);
+            }
+            if (Input.GetKey(KeyCode.G))
+            {
+                transform.position = new Vector2(-4.176444f, -63.44709f);
+            }
+
+            if (isFlying)
             {
                 rb.velocity = new Vector2(rb.velocity.x, 3);
             }

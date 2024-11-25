@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,15 +26,18 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (playerMovement.getIsGrounded())
         {
-            if (isPause)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
+                if (isPause)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
             }
         }
     }
@@ -62,13 +66,11 @@ public class PauseMenu : MonoBehaviour
     
     public void NewGame()
     {
-        playerMovement.transform.position = new Vector3(0.32f, -6.870397f, 0);
-        Camera.main.transform.position = new Vector3(0.06122589f, -3.282597f, -20f);
+        playerMovement.transform.position = new Vector3(-4.176444f, -63.44709f, 0);
+        //Camera.main.transform.position = new Vector3(-0.12f, -59.6f, -20f);
         scoreManager.setJumpCount(0);
         scoreManager.setFallCount(0);
-        scoreManager.setHoursCount(0);
-        scoreManager.setMinusCount(0);
-        scoreManager.setSecondCount(0);
+        scoreManager.setTimeCount(0);
         pauseMenu.SetActive(false);
         isPause = false;
         Time.timeScale = 1f;
@@ -78,7 +80,9 @@ public class PauseMenu : MonoBehaviour
     }
     public void QuiteAnSave()
     {
-        Debug.Log("Ground" + playerMovement.getIsGround());
+        pauseMenu.SetActive(false);
+        isPause = false;
+   
         Vector3 playerPosition = playerMovement.transform.position;
         Debug.Log("Player position" + playerPosition);
         PlayerPrefs.SetFloat("PlayerPosX", playerPosition.x);
@@ -87,10 +91,24 @@ public class PauseMenu : MonoBehaviour
 
         PlayerPrefs.SetInt("FallScore", scoreManager.getFallCount());
         PlayerPrefs.SetInt("JumpScore", scoreManager.getJumpCount());
-        PlayerPrefs.SetInt("Hour", scoreManager.getHoursCount());
-        PlayerPrefs.SetInt("Minus", scoreManager.getMinusCount());
-        PlayerPrefs.SetInt("Second", scoreManager.getSecondCount());
+        PlayerPrefs.SetInt("Time", scoreManager.getTimeCount());
 
+        //PlayerPrefs.SetInt("isIdleAnim", playerMovement.GetComponent<Animator>().GetBool("isIdle") ? 1 : 0);
+        //PlayerPrefs.SetInt("isRunningAnim", playerMovement.GetComponent<Animator>().GetBool("isRunning") ? 1 : 0);
+        //PlayerPrefs.SetInt("isSquattingAnim", playerMovement.GetComponent<Animator>().GetBool("isSquatting") ? 1 : 0);
+        //PlayerPrefs.SetInt("isJumpingAnim", playerMovement.GetComponent<Animator>().GetBool("isJumping") ? 1 : 0);
+        //PlayerPrefs.SetInt("isFallingAnim", playerMovement.GetComponent<Animator>().GetBool("isFalling") ? 1 : 0);
+        //PlayerPrefs.SetInt("isPronedAnim", playerMovement.GetComponent<Animator>().GetBool("isProned") ? 1 : 0);
+        //PlayerPrefs.SetInt("isFlyingAnim", playerMovement.GetComponent<Animator>().GetBool("isFlying") ? 1 : 0);
+
+        //PlayerPrefs.SetInt("isSquatting", playerMovement.getIsSquatting() ? 1 : 0);
+        //PlayerPrefs.SetInt("isGrounded", playerMovement.getIsGrounded() ? 1 : 0);
+        //PlayerPrefs.SetInt("isFalling", playerMovement.getIsFalling() ? 1 : 0);
+        //PlayerPrefs.SetInt("isProned", playerMovement.getIsProned() ? 1 : 0);
+        //PlayerPrefs.SetInt("isFlying", playerMovement.getIsFlying() ? 1 : 0);
+
+        //PlayerPrefs.SetFloat("velocityX", playerMovement.getVelocity().x);
+        //PlayerPrefs.SetFloat("velocityY", playerMovement.getVelocity().y);
         PlayerPrefs.SetInt("HasSavedGame", 1);
 
         PlayerPrefs.Save();

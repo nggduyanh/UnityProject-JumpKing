@@ -1176,7 +1176,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1001868968}
-        m_TargetAssemblyTypeName: ContinueButton, Assembly-CSharp
+        m_TargetAssemblyTypeName: ButtonFunction, Assembly-CSharp
         m_MethodName: Continue
         m_Mode: 1
         m_Arguments:
@@ -1234,9 +1234,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1001868963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f2a09d895297e140bd5e47f418b2d26, type: 3}
+  m_Script: {fileID: 11500000, guid: f4f43d2b0b8170c4595d8f098f913b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  continueButton: {fileID: 1001868965}
 --- !u!1 &1025610739
 GameObject:
   m_ObjectHideFlags: 0
