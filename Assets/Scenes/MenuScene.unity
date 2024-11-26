@@ -863,12 +863,10 @@ MonoBehaviour:
   menuButtons:
   - {fileID: 1001868965}
   - {fileID: 1025610741}
-  - {fileID: 0}
   - {fileID: 664333862}
   highlightedImages:
   - {fileID: 1684084932}
   - {fileID: 1142635503}
-  - {fileID: 0}
   - {fileID: 239230402}
   audioSource: {fileID: 801450676}
   navigateSound: {fileID: 8300000, guid: 181ccd7773e64764cbbc20a1704766e1, type: 3}
