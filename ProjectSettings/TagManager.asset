@@ -18,11 +18,45 @@ TagManager:
   - Map3
   - Map4
   - Map1
+  - Princess
+  - Map5
+  - Map6
+  - Map7
+  - Map8
+  - Map9
+  - Level11
+  - Level12
+  - Level13
+  - Level14
+  - Level15
+  - Level16
+  - Level17
+  - Level18
+  - Level19
+  - Level20
+  - Level21
+  - Level22
+  - Level23
+  - Map10
+  - Map11
+  - Map12
+  - Map13
+  - Map14
+  - Map15
+  - Map16
+  - Map17
+  - Map18
+  - Map19
+  - Map20
+  - Map21
+  - Map22
+  - Map23
+  - FlyingBuff
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Block
   - Water
   - UI
   - 
